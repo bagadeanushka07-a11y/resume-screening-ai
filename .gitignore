@@ -40,3 +40,11 @@ models/*
 *.log
 .DS_Store
 Thumbs.db
+
+# Test fixtures (regenerable, may contain personal info)
+tests/fixtures/*.docx
+tests/fixtures/*.pdf
+tests/fixtures/~$*.docx
+
+# Word lock files
+~$*
