@@ -1,0 +1,42 @@
+# --- Environment ---
+venv/
+.venv/
+env/
+ENV/
+
+# --- Secrets ---
+.env
+*.env
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Data (large / local) ---
+data/raw/*
+data/processed/*
+data/external/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+
+# --- Models (trained artifacts) ---
+models/*
+!models/.gitkeep
+
+# --- Logs / OS ---
+*.log
+.DS_Store
+Thumbs.db
