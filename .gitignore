@@ -48,3 +48,5 @@ tests/fixtures/~$*.docx
 
 # Word lock files
 ~$*
+# Exception: curated skills list (hand-crafted, small, part of the project)
+!data/external/curated_skills.json
