@@ -190,9 +190,11 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     border-right: 1px solid var(--border);
 }
 
-/* Hide Streamlit's auto "main" header in the sidebar */
-[data-testid="stSidebarHeader"] {
-    display: none;
+/* Hide Streamlit's auto "main" header at the top of the sidebar */
+[data-testid="stSidebarHeader"],
+[data-testid="stSidebarNavHeader"],
+section[data-testid="stSidebar"] > div:first-child > div:first-child > span:first-child {
+    display: none !important;
 }
 
 /* ---------- Tables scroll on mobile ---------- */
