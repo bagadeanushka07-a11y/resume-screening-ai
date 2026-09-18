@@ -23,6 +23,7 @@ import streamlit as st  # noqa: E402
 from app.components.auth import require_login  # noqa: E402
 from app.components.match_flow import (  # noqa: E402
     compute_shap_local,
+    persist_match_to_db,
     run_match_pipeline,
 )
 from app.components.navbar import render_footer, render_header  # noqa: E402
@@ -300,19 +301,24 @@ def main() -> None:
     _render_recommendations(cached.get("recommendations", []))
 
     # --- Save to DB (best-effort) ---
+        # --- Save to DB (best-effort) ---
     if ENABLE_DB_PERSISTENCE:
-        try:
-            user_id = st.session_state.get("user_id")
-            if user_id and user_id != 0:
-                from src.database import queries as q
-                from src.database.connection import is_available
-                if is_available():
-                    score = cached["score"]["components"]
-                    # We don't have resume_id/job_id here — skip DB save for now
-                    # (Phase 18's queries create_job/create_resume would need ids)
-                    pass
-        except Exception:
-            pass
+        resume_filename = (
+            st.session_state.get("resume_filename")
+            or st.session_state.get(SESSION_RESUME_PARSED, {}).get("filename")
+            or "uploaded.pdf"
+        )
+        user_id = st.session_state.get("user_id")
+        match_id = persist_match_to_db(
+            user_id=user_id,
+            resume_filename=resume_filename,
+            resume_text=resume_text,
+            jd_text=jd_text,
+            jd_parsed=cached.get("jd_parsed", {}),
+            score_result=cached["score"],
+        )
+        if match_id:
+            st.success("💾 Match saved to your history.")
 
     # --- Navigation ---
     st.markdown("---")

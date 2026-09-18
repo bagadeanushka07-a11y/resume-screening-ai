@@ -233,3 +233,48 @@ def compute_shap_local(features_dict: Dict[str, float]) -> Dict:
         return explain_prediction(features_dict)
     except Exception as e:
         return {"error": str(e), "contributions": []}
+
+
+def persist_match_to_db(
+    user_id: int,
+    resume_filename: str,
+    resume_text: str,
+    jd_text: str,
+    jd_parsed: dict,
+    score_result: dict,
+) -> Optional[int]:
+    """
+    Save resume, job, and match to MySQL. Best-effort — returns match_id or None.
+    """
+    if not user_id or user_id == 0:
+        return None
+    try:
+        from src.database import queries as q
+        from src.database.connection import is_available
+
+        if not is_available():
+            return None
+
+        # Save resume
+        resume_id = q.create_resume(user_id, resume_filename or "uploaded.pdf", resume_text)
+
+        # Save job
+        title = jd_parsed.get("title") or "Untitled role"
+        company = "Unknown"
+        job_id = q.create_job(title, company, jd_text)
+
+        # Save match
+        components = score_result.get("components", {})
+        match_id = q.save_match_result(
+            resume_id=resume_id,
+            job_id=job_id,
+            skill_score=components.get("skill_match", 0.0),
+            semantic_score=components.get("semantic_similarity", 0.0),
+            experience_score=components.get("experience_match", 0.0),
+            education_score=components.get("education_match", 0.0),
+            project_score=components.get("category_match", 0.0),
+            overall_score=score_result.get("overall_score", 0.0),
+        )
+        return match_id
+    except Exception:
+        return None
