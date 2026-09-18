@@ -1,7 +1,7 @@
 """
 Streamlit entry point.
 
-Run from the project root with:
+Run from the project root:
     streamlit run app/main.py
 """
 
@@ -10,7 +10,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-# Ensure the project root is importable when Streamlit runs this file directly
+# Ensure project root is importable when running via `streamlit run`
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))

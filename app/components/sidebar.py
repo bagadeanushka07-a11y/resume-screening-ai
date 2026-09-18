@@ -1,8 +1,5 @@
 """
-Sidebar with user context and quick navigation.
-
-On mobile, Streamlit collapses the sidebar into a hamburger menu, so
-we keep it minimal and touch-friendly.
+Sidebar with user context and quick tips.
 """
 
 from __future__ import annotations
@@ -10,9 +7,9 @@ from __future__ import annotations
 import streamlit as st
 
 from app.config.config import (
+    SESSION_USER_EMAIL,
     SESSION_USER_ID,
     SESSION_USER_NAME,
-    SESSION_USER_EMAIL,
 )
 
 
@@ -33,11 +30,7 @@ def render_sidebar() -> None:
                 unsafe_allow_html=True,
             )
             if st.button("🚪 Log out", use_container_width=True):
-                for key in [
-                    SESSION_USER_ID,
-                    SESSION_USER_NAME,
-                    SESSION_USER_EMAIL,
-                ]:
+                for key in [SESSION_USER_ID, SESSION_USER_NAME, SESSION_USER_EMAIL]:
                     st.session_state.pop(key, None)
                 st.rerun()
         else:

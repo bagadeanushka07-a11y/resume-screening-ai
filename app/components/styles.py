@@ -1,8 +1,8 @@
 """
 Responsive CSS injected into every page.
 
-Keeps the app looking like a modern SaaS dashboard on desktop / tablet / mobile.
-Uses CSS clamp() and media queries so it works at any viewport width.
+Mobile-first: uses clamp() and media queries so the app works on
+desktop, tablet, and phone without horizontal scrolling.
 """
 
 from __future__ import annotations
@@ -29,7 +29,13 @@ CSS = """
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
 }
 
-/* Main block padding — smaller on mobile */
+* { box-sizing: border-box; }
+
+html, body, [data-testid="stAppViewContainer"] {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 .block-container {
     padding-top: 1.5rem;
     padding-bottom: 2rem;
@@ -38,7 +44,7 @@ CSS = """
     max-width: 1300px;
 }
 
-/* Typography — clamp scales smoothly with viewport */
+/* ---------- Typography — clamp scales with viewport ---------- */
 h1 { font-size: clamp(1.6rem, 4vw, 2.4rem) !important; line-height: 1.2 !important; }
 h2 { font-size: clamp(1.3rem, 3vw, 1.8rem) !important; line-height: 1.25 !important; }
 h3 { font-size: clamp(1.1rem, 2.5vw, 1.4rem) !important; }
@@ -53,21 +59,18 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     box-shadow: var(--shadow);
     margin-bottom: 1rem;
 }
-
 .card-title {
     font-weight: 600;
     font-size: clamp(0.95rem, 1.6vw, 1.05rem);
     color: var(--text-primary);
     margin-bottom: 0.35rem;
 }
-
 .card-value {
     font-weight: 700;
     font-size: clamp(1.4rem, 3vw, 2rem);
     color: var(--primary);
     line-height: 1.1;
 }
-
 .card-subtitle {
     color: var(--text-muted);
     font-size: clamp(0.78rem, 1.4vw, 0.9rem);
@@ -110,11 +113,7 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     font-weight: 600 !important;
     padding: 0.5rem 1rem !important;
     min-height: 42px;
-    transition: transform 0.05s ease;
 }
-.stButton > button:active { transform: scale(0.98); }
-
-/* Primary buttons */
 .stButton > button[kind="primary"] {
     background: var(--primary) !important;
     color: white !important;
@@ -131,7 +130,6 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     padding: 0.75rem;
     background: var(--bg-subtle);
 }
-[data-testid="stFileUploader"] label { font-weight: 600; }
 
 /* ---------- Sidebar ---------- */
 [data-testid="stSidebar"] {
@@ -139,10 +137,20 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     border-right: 1px solid var(--border);
 }
 
-/* ---------- Tables ---------- */
-[data-testid="stDataFrame"] {
-    border-radius: var(--radius);
-    overflow-x: auto;
+/* ---------- Tables scroll on mobile ---------- */
+[data-testid="stDataFrame"] > div {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- Charts fill width ---------- */
+[data-testid="stPlotlyChart"] { width: 100% !important; }
+
+/* ---------- Code blocks wrap ---------- */
+pre, code {
+    white-space: pre-wrap !important;
+    word-break: break-word;
+    font-size: clamp(0.75rem, 1.6vw, 0.9rem) !important;
 }
 
 /* ---------- Metrics ---------- */
@@ -150,17 +158,18 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     font-size: clamp(1.1rem, 2.5vw, 1.6rem) !important;
 }
 
-/* ---------- Responsive tweaks ---------- */
+/* ---------- Responsive — tablet & phone ---------- */
 @media (max-width: 768px) {
     .block-container {
         padding-top: 1rem;
-        padding-left: 0.6rem;
-        padding-right: 0.6rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
     }
     .card { padding: 0.85rem; }
     .card-value { font-size: 1.4rem; }
-    /* Buttons full-width on mobile */
     .stButton > button { width: 100%; }
+    header[data-testid="stHeader"] { height: 2.5rem; }
+    [data-testid="stMetric"] { padding: 0.5rem 0; }
 }
 
 @media (max-width: 480px) {
@@ -168,6 +177,7 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     h2 { font-size: 1.15rem !important; }
     .card-value { font-size: 1.25rem; }
     .badge { font-size: 0.7rem; padding: 0.15rem 0.5rem; }
+    .block-container { padding-left: 0.5rem; padding-right: 0.5rem; }
 }
 
 /* ---------- Utility ---------- */
@@ -184,5 +194,5 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
 
 
 def inject_global_styles() -> None:
-    """Inject the shared stylesheet. Call once per page, right after set_page_config."""
+    """Inject the shared stylesheet. Call once per page after set_page_config."""
     st.markdown(CSS, unsafe_allow_html=True)
