@@ -19,7 +19,7 @@ def render_sidebar() -> None:
         st.markdown("### 📄 AI Resume Screening")
 
         user_id = st.session_state.get(SESSION_USER_ID)
-        if user_id:
+        if SESSION_USER_ID in st.session_state:
             name = st.session_state.get(SESSION_USER_NAME, "User")
             email = st.session_state.get(SESSION_USER_EMAIL, "")
             st.markdown(
