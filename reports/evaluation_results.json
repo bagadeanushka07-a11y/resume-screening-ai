@@ -1,0 +1,64 @@
+{
+  "evaluated_at": "2026-09-18T09:04:36",
+  "test_set_size": 316,
+  "test_set_positives": 136,
+  "test_set_negatives": 180,
+  "metrics": {
+    "logistic_regression": {
+      "accuracy": 0.6835,
+      "precision": 0.6184,
+      "recall": 0.6912,
+      "f1": 0.6528,
+      "roc_auc": 0.7295
+    },
+    "random_forest": {
+      "accuracy": 0.6297,
+      "precision": 0.5736,
+      "recall": 0.5441,
+      "f1": 0.5585,
+      "roc_auc": 0.6494
+    },
+    "xgboost": {
+      "accuracy": 0.6297,
+      "precision": 0.5714,
+      "recall": 0.5588,
+      "f1": 0.5651,
+      "roc_auc": 0.675
+    }
+  },
+  "confusion_matrices": {
+    "logistic_regression": [
+      [
+        122,
+        58
+      ],
+      [
+        42,
+        94
+      ]
+    ],
+    "random_forest": [
+      [
+        125,
+        55
+      ],
+      [
+        62,
+        74
+      ]
+    ],
+    "xgboost": [
+      [
+        123,
+        57
+      ],
+      [
+        60,
+        76
+      ]
+    ]
+  },
+  "best_model": "logistic_regression",
+  "best_model_roc_auc": 0.7295,
+  "notes": "Metrics computed on the held-out test set (15% of full dataset), which was never seen during training or SMOTE. Labels are weak supervision from TF-IDF similarity; the models predict from independent features (skill match, experience, education, category, length)."
+}
