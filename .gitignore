@@ -66,3 +66,9 @@ tests/fixtures/~$*.docx
 # Allow ESCO knowledge base files needed at runtime
 !data/processed/esco_skills_clean.csv
 !data/processed/esco_alias_map.json
+
+# Allow docs/screenshots
+!docs/screenshots/*.png
+
+# Allow docs/screenshots
+!docs/screenshots/*.png
