@@ -52,7 +52,7 @@ FEATURE_COLS = [
     "experience_match",
     "education_match",
     "category_match",
-    "length_ratio",
+    
 ]
 LABEL_COL = "label"
 

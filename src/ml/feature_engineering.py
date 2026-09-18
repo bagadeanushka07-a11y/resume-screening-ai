@@ -8,7 +8,7 @@ Given a (resume_text, jd_text) pair, extract a fixed-length feature vector:
     - experience_match         : 0-1, resume years vs JD required years
     - education_match          : 0-1, resume degree >= JD required degree
     - category_match           : 0-1, resume category vs JD title keywords
-    - length_ratio             : 0-1, how comparable the two docs are in length
+    
 
 Speed note:
     extract_features accepts optional pre-computed skills to avoid the
@@ -138,11 +138,11 @@ def extract_features(
     features: Dict[str, float] = {
         "skill_match_score": 0.0,
         "skill_match_required": 0.0,
-        "tfidf_similarity": 0.0,
+        
         "experience_match": 0.0,
         "education_match": 0.0,
         "category_match": 0.0,
-        "length_ratio": 0.0,
+       
     }
 
     if not isinstance(resume_text, str) or not isinstance(jd_text, str):
@@ -180,13 +180,7 @@ def extract_features(
         _skill_overlap(resume_skills, required_names), 4
     )
 
-    # --- TF-IDF similarity ---
-    try:
-        features["tfidf_similarity"] = round(
-            compute_similarity(resume_text, jd_text), 4
-        )
-    except Exception:
-        pass
+  
 
     # --- Experience match ---
     try:
@@ -235,6 +229,6 @@ def extract_features(
         pass
 
     # --- Length ratio ---
-    features["length_ratio"] = round(_length_ratio(resume_text, jd_text), 4)
+   
 
     return features

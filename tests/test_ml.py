@@ -27,8 +27,11 @@ def test_extract_features_returns_all_columns():
         "We need a Python engineer with Django and AWS experience.",
     )
     expected = {
-        "skill_match_score", "skill_match_required", "tfidf_similarity",
-        "experience_match", "education_match", "category_match", "length_ratio",
+        "skill_match_score",
+        "skill_match_required",
+        "experience_match",
+        "education_match",
+        "category_match",
     }
     assert expected == set(features.keys())
 
@@ -95,16 +98,14 @@ def _load_model(name):
 
 
 def _sample_features():
-    """Build a plausible feature vector in the right order."""
+    """Build a plausible 5-feature vector in the right order."""
     return np.array([[
         0.5,   # skill_match_score
         0.4,   # skill_match_required
         0.8,   # experience_match
         0.8,   # education_match
         0.8,   # category_match
-        0.7,   # length_ratio
     ]])
-
 
 @pytest.mark.parametrize("model_name", ["logistic_regression", "random_forest", "xgboost"])
 def test_model_predicts_binary(model_name):
@@ -137,8 +138,9 @@ def test_metadata_has_expected_keys():
 
 
 def test_metadata_feature_columns_has_no_leak():
-    """The feature list must NOT contain tfidf_similarity (label source)."""
+    """The feature list must NOT contain tfidf_similarity or length_ratio."""
     import json
     with open(MODELS_DIR / "metadata.json", encoding="utf-8") as f:
         meta = json.load(f)
     assert "tfidf_similarity" not in meta["feature_columns"]
+    assert "length_ratio" not in meta["feature_columns"]

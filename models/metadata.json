@@ -1,5 +1,5 @@
 {
-  "trained_at": "2026-09-18T08:58:38",
+  "trained_at": "2026-09-18T12:07:06",
   "n_samples": 2101,
   "n_train": 1470,
   "n_val": 315,
@@ -10,8 +10,7 @@
     "skill_match_required",
     "experience_match",
     "education_match",
-    "category_match",
-    "length_ratio"
+    "category_match"
   ],
   "label_column": "label",
   "class_distribution": {
@@ -35,52 +34,52 @@
   "results": {
     "logistic_regression": {
       "val_metrics": {
-        "accuracy": 0.6413,
-        "precision": 0.5786,
-        "recall": 0.6,
-        "f1": 0.5891,
-        "roc_auc": 0.7034
+        "accuracy": 0.6032,
+        "precision": 0.5521,
+        "recall": 0.3926,
+        "f1": 0.4589,
+        "roc_auc": 0.6036
       },
       "train_metrics": {
-        "accuracy": 0.6458,
-        "precision": 0.6481,
-        "recall": 0.6381,
-        "f1": 0.6431,
-        "roc_auc": 0.7059
+        "accuracy": 0.6351,
+        "precision": 0.6974,
+        "recall": 0.4774,
+        "f1": 0.5668,
+        "roc_auc": 0.6423
       },
       "saved_at": "C:\\Users\\Anushka\\OneDrive\\Desktop\\Project_Resume\\models\\logistic_regression.joblib"
     },
     "random_forest": {
       "val_metrics": {
-        "accuracy": 0.6317,
-        "precision": 0.576,
-        "recall": 0.5333,
-        "f1": 0.5538,
-        "roc_auc": 0.6664
+        "accuracy": 0.5968,
+        "precision": 0.5426,
+        "recall": 0.3778,
+        "f1": 0.4454,
+        "roc_auc": 0.6258
       },
       "train_metrics": {
-        "accuracy": 0.8833,
-        "precision": 0.9139,
-        "recall": 0.8464,
-        "f1": 0.8789,
-        "roc_auc": 0.9657
+        "accuracy": 0.7107,
+        "precision": 0.802,
+        "recall": 0.5595,
+        "f1": 0.6592,
+        "roc_auc": 0.7863
       },
       "saved_at": "C:\\Users\\Anushka\\OneDrive\\Desktop\\Project_Resume\\models\\random_forest.joblib"
     },
     "xgboost": {
       "val_metrics": {
-        "accuracy": 0.619,
-        "precision": 0.56,
-        "recall": 0.5185,
-        "f1": 0.5385,
-        "roc_auc": 0.6688
+        "accuracy": 0.6032,
+        "precision": 0.55,
+        "recall": 0.4074,
+        "f1": 0.4681,
+        "roc_auc": 0.6268
       },
       "train_metrics": {
-        "accuracy": 0.8214,
-        "precision": 0.8383,
-        "recall": 0.7964,
-        "f1": 0.8168,
-        "roc_auc": 0.9164
+        "accuracy": 0.6952,
+        "precision": 0.7724,
+        "recall": 0.5536,
+        "f1": 0.6449,
+        "roc_auc": 0.7645
       },
       "saved_at": "C:\\Users\\Anushka\\OneDrive\\Desktop\\Project_Resume\\models\\xgboost.joblib"
     }
