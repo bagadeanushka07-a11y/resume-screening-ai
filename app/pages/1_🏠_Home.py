@@ -26,7 +26,7 @@ def _hero() -> None:
     st.markdown(
         f"""
         <div class='card' style='padding:clamp(1.2rem,4vw,2.5rem); text-align:center;'>
-            <h1 style='margin-bottom:0.5rem;'>{APP_ICON} {APP_TITLE}</h1>
+            <h1 style='margin-bottom:0.5rem; color:var(--text-primary);'>{APP_ICON} {APP_TITLE}</h1>
             <p style='font-size:clamp(1rem,2vw,1.15rem); color:var(--text-muted); margin-bottom:1.5rem;'>
                 {APP_TAGLINE}
             </p>

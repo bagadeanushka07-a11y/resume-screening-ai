@@ -1,8 +1,9 @@
 """
-Responsive CSS injected into every page.
+Responsive + theme-aware CSS injected into every page.
 
-Mobile-first: uses clamp() and media queries so the app works on
-desktop, tablet, and phone without horizontal scrolling.
+Works in both light and dark mode by using Streamlit's theme variables
+(defined in .streamlit/config.toml) via CSS `prefers-color-scheme` and
+the `[data-theme="dark"]` selector Streamlit injects.
 """
 
 from __future__ import annotations
@@ -12,7 +13,7 @@ import streamlit as st
 
 CSS = """
 <style>
-/* ---------- Global ---------- */
+/* ---------- Design tokens: light (default) ---------- */
 :root {
     --primary: #4F46E5;
     --primary-dark: #3730A3;
@@ -27,10 +28,62 @@ CSS = """
     --border: #E5E7EB;
     --radius: 12px;
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --badge-success-bg: #D1FAE5;
+    --badge-success-fg: #065F46;
+    --badge-warning-bg: #FEF3C7;
+    --badge-warning-fg: #92400E;
+    --badge-danger-bg:  #FEE2E2;
+    --badge-danger-fg:  #991B1B;
+    --badge-info-bg:    #DBEAFE;
+    --badge-info-fg:    #1E40AF;
+    --badge-neutral-bg: #F3F4F6;
+    --badge-neutral-fg: #374151;
 }
 
-* { box-sizing: border-box; }
+/* ---------- Design tokens: dark mode ---------- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-card: #1F2937;
+        --bg-subtle: #111827;
+        --text-primary: #F9FAFB;
+        --text-muted: #9CA3AF;
+        --border: #374151;
+        --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+        --badge-success-bg: #064E3B;
+        --badge-success-fg: #6EE7B7;
+        --badge-warning-bg: #78350F;
+        --badge-warning-fg: #FCD34D;
+        --badge-danger-bg:  #7F1D1D;
+        --badge-danger-fg:  #FCA5A5;
+        --badge-info-bg:    #1E3A8A;
+        --badge-info-fg:    #93C5FD;
+        --badge-neutral-bg: #374151;
+        --badge-neutral-fg: #E5E7EB;
+    }
+}
 
+/* Streamlit also injects a data-theme attribute; honor it too */
+[data-theme="dark"], html[data-theme="dark"] {
+    --bg-card: #1F2937;
+    --bg-subtle: #111827;
+    --text-primary: #F9FAFB;
+    --text-muted: #9CA3AF;
+    --border: #374151;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    --badge-success-bg: #064E3B;
+    --badge-success-fg: #6EE7B7;
+    --badge-warning-bg: #78350F;
+    --badge-warning-fg: #FCD34D;
+    --badge-danger-bg:  #7F1D1D;
+    --badge-danger-fg:  #FCA5A5;
+    --badge-info-bg:    #1E3A8A;
+    --badge-info-fg:    #93C5FD;
+    --badge-neutral-bg: #374151;
+    --badge-neutral-fg: #E5E7EB;
+}
+
+/* ---------- Global ---------- */
+* { box-sizing: border-box; }
 html, body, [data-testid="stAppViewContainer"] {
     overflow-x: hidden;
     max-width: 100vw;
@@ -44,7 +97,7 @@ html, body, [data-testid="stAppViewContainer"] {
     max-width: 1300px;
 }
 
-/* ---------- Typography — clamp scales with viewport ---------- */
+/* ---------- Typography ---------- */
 h1 { font-size: clamp(1.6rem, 4vw, 2.4rem) !important; line-height: 1.2 !important; }
 h2 { font-size: clamp(1.3rem, 3vw, 1.8rem) !important; line-height: 1.25 !important; }
 h3 { font-size: clamp(1.1rem, 2.5vw, 1.4rem) !important; }
@@ -58,6 +111,7 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     padding: clamp(0.9rem, 2vw, 1.4rem);
     box-shadow: var(--shadow);
     margin-bottom: 1rem;
+    color: var(--text-primary);
 }
 .card-title {
     font-weight: 600;
@@ -87,11 +141,11 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     margin: 0.15rem 0.2rem 0.15rem 0;
     white-space: nowrap;
 }
-.badge-success { background: #D1FAE5; color: #065F46; }
-.badge-warning { background: #FEF3C7; color: #92400E; }
-.badge-danger  { background: #FEE2E2; color: #991B1B; }
-.badge-info    { background: #DBEAFE; color: #1E40AF; }
-.badge-neutral { background: #F3F4F6; color: #374151; }
+.badge-success { background: var(--badge-success-bg); color: var(--badge-success-fg); }
+.badge-warning { background: var(--badge-warning-bg); color: var(--badge-warning-fg); }
+.badge-danger  { background: var(--badge-danger-bg);  color: var(--badge-danger-fg); }
+.badge-info    { background: var(--badge-info-bg);    color: var(--badge-info-fg); }
+.badge-neutral { background: var(--badge-neutral-bg); color: var(--badge-neutral-fg); }
 
 /* ---------- Progress bar ---------- */
 .score-bar {
@@ -133,7 +187,6 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
 
 /* ---------- Sidebar ---------- */
 [data-testid="stSidebar"] {
-    background: var(--bg-subtle);
     border-right: 1px solid var(--border);
 }
 
@@ -158,7 +211,7 @@ pre, code {
     font-size: clamp(1.1rem, 2.5vw, 1.6rem) !important;
 }
 
-/* ---------- Responsive — tablet & phone ---------- */
+/* ---------- Responsive ---------- */
 @media (max-width: 768px) {
     .block-container {
         padding-top: 1rem;
@@ -171,7 +224,6 @@ pre, code {
     header[data-testid="stHeader"] { height: 2.5rem; }
     [data-testid="stMetric"] { padding: 0.5rem 0; }
 }
-
 @media (max-width: 480px) {
     h1 { font-size: 1.35rem !important; }
     h2 { font-size: 1.15rem !important; }

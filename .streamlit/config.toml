@@ -1,0 +1,23 @@
+# Streamlit configuration for AI Resume Screening
+
+[theme]
+# Base light theme
+base = "light"
+primaryColor = "#4F46E5"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F9FAFB"
+textColor = "#111827"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false
+
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = true
+maxUploadSize = 10
+
+[client]
+showErrorDetails = true
+toolbarMode = "auto"
