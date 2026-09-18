@@ -56,3 +56,9 @@ tests/fixtures/~$*.docx
 
 # Exception: recommendation templates (hand-curated, small, part of the project)
 !data/external/recommendations.json
+
+# Allow trained model artifacts (small, needed at runtime on Streamlit Cloud)
+!models/*.joblib
+
+# Streamlit secrets (real, not the .example template)
+.streamlit/secrets.toml
