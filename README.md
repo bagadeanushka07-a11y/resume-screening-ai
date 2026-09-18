@@ -53,8 +53,6 @@ Recruiters spend hours manually screening resumes against job requirements. Cand
 ---
 
 
-
-````markdown
 ## 🏗️ Architecture
 
 ![Architecture diagram](docs/architecture.png)
