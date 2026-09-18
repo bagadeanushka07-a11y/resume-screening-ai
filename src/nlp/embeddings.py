@@ -18,9 +18,10 @@ Public API:
     - get_embedding(text) -> np.ndarray
     - embed_texts(texts) -> np.ndarray (batched)
 """
+from __future__ import annotations
+
 import os
 os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
-from __future__ import annotations
 
 import re
 from functools import lru_cache
