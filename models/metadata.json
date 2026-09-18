@@ -1,0 +1,89 @@
+{
+  "trained_at": "2026-09-18T08:58:38",
+  "n_samples": 2101,
+  "n_train": 1470,
+  "n_val": 315,
+  "n_test": 316,
+  "n_train_after_smote": 1680,
+  "feature_columns": [
+    "skill_match_score",
+    "skill_match_required",
+    "experience_match",
+    "education_match",
+    "category_match",
+    "length_ratio"
+  ],
+  "label_column": "label",
+  "class_distribution": {
+    "train_before_smote": {
+      "0": 840,
+      "1": 630
+    },
+    "train_after_smote": {
+      "0": 840,
+      "1": 840
+    },
+    "val": {
+      "0": 180,
+      "1": 135
+    },
+    "test": {
+      "0": 180,
+      "1": 136
+    }
+  },
+  "results": {
+    "logistic_regression": {
+      "val_metrics": {
+        "accuracy": 0.6413,
+        "precision": 0.5786,
+        "recall": 0.6,
+        "f1": 0.5891,
+        "roc_auc": 0.7034
+      },
+      "train_metrics": {
+        "accuracy": 0.6458,
+        "precision": 0.6481,
+        "recall": 0.6381,
+        "f1": 0.6431,
+        "roc_auc": 0.7059
+      },
+      "saved_at": "C:\\Users\\Anushka\\OneDrive\\Desktop\\Project_Resume\\models\\logistic_regression.joblib"
+    },
+    "random_forest": {
+      "val_metrics": {
+        "accuracy": 0.6317,
+        "precision": 0.576,
+        "recall": 0.5333,
+        "f1": 0.5538,
+        "roc_auc": 0.6664
+      },
+      "train_metrics": {
+        "accuracy": 0.8833,
+        "precision": 0.9139,
+        "recall": 0.8464,
+        "f1": 0.8789,
+        "roc_auc": 0.9657
+      },
+      "saved_at": "C:\\Users\\Anushka\\OneDrive\\Desktop\\Project_Resume\\models\\random_forest.joblib"
+    },
+    "xgboost": {
+      "val_metrics": {
+        "accuracy": 0.619,
+        "precision": 0.56,
+        "recall": 0.5185,
+        "f1": 0.5385,
+        "roc_auc": 0.6688
+      },
+      "train_metrics": {
+        "accuracy": 0.8214,
+        "precision": 0.8383,
+        "recall": 0.7964,
+        "f1": 0.8168,
+        "roc_auc": 0.9164
+      },
+      "saved_at": "C:\\Users\\Anushka\\OneDrive\\Desktop\\Project_Resume\\models\\xgboost.joblib"
+    }
+  },
+  "notes": "Weak supervision: labels derived from skill overlap >= 0.5 (match) or <= 0.15 (no match). SMOTE applied to training fold only. Class weights applied to all models."
+}
