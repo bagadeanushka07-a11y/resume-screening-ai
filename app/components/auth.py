@@ -61,7 +61,7 @@ def validate_registration(
 # --- Session helpers ---------------------------------------------------------
 
 def is_logged_in() -> bool:
-    return bool(st.session_state.get(SESSION_USER_ID))
+    return SESSION_USER_ID in st.session_state
 
 
 def current_user() -> Optional[dict]:
