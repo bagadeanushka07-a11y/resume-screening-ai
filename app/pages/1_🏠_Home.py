@@ -12,10 +12,11 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 import streamlit as st  # noqa: E402
-
+from app.components.sidebar import render_sidebar  # noqa: E402
 from app.components.navbar import render_footer  # noqa: E402
 from app.components.styles import inject_global_styles  # noqa: E402
 from app.config.config import (  # noqa: E402
+# noqa: E402
     APP_ICON,
     APP_TAGLINE,
     APP_TITLE,
@@ -117,6 +118,7 @@ def _tech_stack() -> None:
 
 def main() -> None:
     inject_global_styles()
+    render_sidebar()
     _hero()
     _cta_row()
     st.markdown("")

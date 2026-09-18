@@ -20,7 +20,7 @@ import streamlit as st  # noqa: E402
 
 from app.components.styles import inject_global_styles  # noqa: E402
 from app.config.config import APP_ICON, APP_TITLE, APP_VERSION  # noqa: E402
-
+from app.components.sidebar import render_sidebar  # noqa: E402
 
 st.set_page_config(
     page_title=f"{APP_TITLE} v{APP_VERSION}",
@@ -29,6 +29,6 @@ st.set_page_config(
     initial_sidebar_state="auto",
 )
 inject_global_styles()
-
+render_sidebar()
 # Redirect to the Home page on first load
 st.switch_page("pages/1_🏠_Home.py")

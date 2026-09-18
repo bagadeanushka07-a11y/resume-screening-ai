@@ -190,6 +190,11 @@ p, li { font-size: clamp(0.9rem, 1.6vw, 1rem) !important; }
     border-right: 1px solid var(--border);
 }
 
+/* Hide Streamlit's auto "main" header in the sidebar */
+[data-testid="stSidebarHeader"] {
+    display: none;
+}
+
 /* ---------- Tables scroll on mobile ---------- */
 [data-testid="stDataFrame"] > div {
     overflow-x: auto !important;
