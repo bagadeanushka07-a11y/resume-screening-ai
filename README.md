@@ -52,46 +52,12 @@ Recruiters spend hours manually screening resumes against job requirements. Cand
 
 ---
 
+
+
+````markdown
 ## 🏗️ Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      STREAMLIT UI (Frontend)                    │
-│  Home · Register · Login · Resume · Job · Match · Dashboard    │
-│  History · Model Analytics · Dark/Light mode · Responsive      │
-└────────────────────────────┬────────────────────────────────────┘
-                             │
-┌────────────────────────────▼────────────────────────────────────┐
-│                    APPLICATION LAYER                            │
-│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────┐    │
-│  │  Document    │  │  Skill       │  │  JD Parser        │    │
-│  │  Parser      │  │  Extractor   │  │  (title, exp, edu)│    │
-│  │  (PDF/DOCX)  │  │  (ESCO+cur.) │  │                   │    │
-│  └──────────────┘  └──────────────┘  └───────────────────┘    │
-│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────┐    │
-│  │  TF-IDF      │  │  Sentence    │  │  Skill Gap        │    │
-│  │  Matcher     │  │  Embeddings  │  │  Analyzer         │    │
-│  └──────────────┘  └──────────────┘  └───────────────────┘    │
-│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────┐    │
-│  │  ML Model    │  │  SHAP        │  │  Recommendation   │    │
-│  │  (LogReg)    │  │  Explainer   │  │  Engine           │    │
-│  └──────────────┘  └──────────────┘  └───────────────────┘    │
-└────────────────────────────┬────────────────────────────────────┘
-                             │
-┌────────────────────────────▼────────────────────────────────────┐
-│                       DATA LAYER                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────┐    │
-│  │  Resumes     │  │  Job Posts   │  │  ESCO Skills KB   │    │
-│  │  (2,484)     │  │  (5,000)     │  │  (13,960 labels)  │    │
-│  └──────────────┘  └──────────────┘  └───────────────────┘    │
-│  ┌────────────────────────────────────────────────────────┐    │
-│  │  MySQL 8 (local) — users, resumes, jobs, matches      │    │
-│  │  Falls back to stateless mode on Streamlit Cloud      │    │
-│  └────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
+![Architecture diagram](docs/architecture.png)
 
 ## 🛠️ Tech Stack
 
