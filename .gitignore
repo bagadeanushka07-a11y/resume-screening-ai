@@ -53,3 +53,6 @@ tests/fixtures/~$*.docx
 
 # Exception: model metadata is useful to commit
 !models/metadata.json
+
+# Exception: recommendation templates (hand-curated, small, part of the project)
+!data/external/recommendations.json

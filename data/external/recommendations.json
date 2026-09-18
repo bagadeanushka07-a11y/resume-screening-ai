@@ -1,0 +1,187 @@
+{
+  "Python": {
+    "recommendation": "Build a small project in Python (e.g., CLI tool, scraper, or REST API) to reinforce fundamentals.",
+    "priority": "high",
+    "category": "project"
+  },
+  "Django": {
+    "recommendation": "Follow the official Django tutorial and build a blog or todo app with authentication.",
+    "priority": "high",
+    "category": "course"
+  },
+  "Flask": {
+    "recommendation": "Build a minimal REST API with Flask and deploy it to a free host.",
+    "priority": "medium",
+    "category": "project"
+  },
+  "FastAPI": {
+    "recommendation": "Recreate a Flask API in FastAPI to compare design patterns and async support.",
+    "priority": "medium",
+    "category": "project"
+  },
+  "Docker": {
+    "recommendation": "Learn Docker fundamentals and containerize one existing Python project. Write a Dockerfile and docker-compose.yml.",
+    "priority": "high",
+    "category": "course"
+  },
+  "Kubernetes": {
+    "recommendation": "After Docker, complete a beginner Kubernetes course and deploy a simple app to a local minikube cluster.",
+    "priority": "medium",
+    "category": "course"
+  },
+  "AWS": {
+    "recommendation": "Study AWS core services (EC2, S3, IAM) via AWS Skill Builder. Deploy a small app to EC2 free tier.",
+    "priority": "high",
+    "category": "course"
+  },
+  "Azure": {
+    "recommendation": "Complete Microsoft Learn's Azure Fundamentals path (AZ-900).",
+    "priority": "medium",
+    "category": "course"
+  },
+  "GCP": {
+    "recommendation": "Explore Google Cloud free tier — deploy a Cloud Run service from a container.",
+    "priority": "medium",
+    "category": "course"
+  },
+  "Git": {
+    "recommendation": "Practice branching, rebasing, and pull requests on a personal repo. Learn to write clear commit messages.",
+    "priority": "high",
+    "category": "practice"
+  },
+  "GitHub": {
+    "recommendation": "Contribute to an open-source project — start with documentation fixes or small bug fixes.",
+    "priority": "medium",
+    "category": "practice"
+  },
+  "CI/CD": {
+    "recommendation": "Set up a GitHub Actions workflow that runs tests and lints your Python project on every push.",
+    "priority": "high",
+    "category": "project"
+  },
+  "SQL": {
+    "recommendation": "Practice joins, subqueries, and window functions on a real dataset using SQLite or PostgreSQL.",
+    "priority": "high",
+    "category": "practice"
+  },
+  "PostgreSQL": {
+    "recommendation": "Set up PostgreSQL locally, design a small schema, and write queries to answer realistic business questions.",
+    "priority": "high",
+    "category": "project"
+  },
+  "MySQL": {
+    "recommendation": "Build a small CRUD app backed by MySQL. Learn indexes and EXPLAIN plans.",
+    "priority": "medium",
+    "category": "project"
+  },
+  "MongoDB": {
+    "recommendation": "Model a real dataset (e.g., blog posts, products) in MongoDB and learn aggregation pipelines.",
+    "priority": "medium",
+    "category": "project"
+  },
+  "Redis": {
+    "recommendation": "Add Redis caching to an existing web app. Measure query latency before and after.",
+    "priority": "medium",
+    "category": "project"
+  },
+  "React": {
+    "recommendation": "Build a small interactive UI (todo, dashboard) with React. Learn hooks and state management.",
+    "priority": "medium",
+    "category": "project"
+  },
+  "JavaScript": {
+    "recommendation": "Solidify JS fundamentals: closures, promises, async/await. Build a browser extension or small game.",
+    "priority": "medium",
+    "category": "project"
+  },
+  "TypeScript": {
+    "recommendation": "Convert a small JS project to TypeScript. Learn interfaces, generics, and type narrowing.",
+    "priority": "medium",
+    "category": "project"
+  },
+  "REST API": {
+    "recommendation": "Practice designing and consuming REST APIs using FastAPI or Django REST Framework. Document with OpenAPI.",
+    "priority": "high",
+    "category": "project"
+  },
+  "GraphQL": {
+    "recommendation": "Build a GraphQL API with Apollo or Graphene. Compare with REST on the same dataset.",
+    "priority": "low",
+    "category": "project"
+  },
+  "Machine Learning": {
+    "recommendation": "Complete Andrew Ng's ML Specialization (Coursera). Implement one algorithm from scratch (e.g., linear regression).",
+    "priority": "high",
+    "category": "course"
+  },
+  "Deep Learning": {
+    "recommendation": "Build a small neural network from scratch in NumPy, then reproduce it in PyTorch.",
+    "priority": "high",
+    "category": "project"
+  },
+  "NLP": {
+    "recommendation": "Work through Hugging Face's NLP course. Build a text classifier on a public dataset.",
+    "priority": "high",
+    "category": "course"
+  },
+  "Computer Vision": {
+    "recommendation": "Complete the PyImageSearch or fast.ai CV lessons. Train a small CNN on CIFAR-10.",
+    "priority": "medium",
+    "category": "course"
+  },
+  "TensorFlow": {
+    "recommendation": "Complete TensorFlow's official tutorials. Rebuild one project in Keras.",
+    "priority": "medium",
+    "category": "course"
+  },
+  "PyTorch": {
+    "recommendation": "Work through the official PyTorch 60-minute blitz. Implement an image classifier on a small dataset.",
+    "priority": "medium",
+    "category": "course"
+  },
+  "Pandas": {
+    "recommendation": "Practice groupby, merge, pivot, and time series on a real CSV from Kaggle.",
+    "priority": "high",
+    "category": "practice"
+  },
+  "NumPy": {
+    "recommendation": "Work through the NumPy quickstart. Reimplement a small math operation vectorized vs loop-based.",
+    "priority": "medium",
+    "category": "practice"
+  },
+  "scikit-learn": {
+    "recommendation": "Build an end-to-end ML pipeline (preprocessing → model → evaluation) on a Kaggle dataset.",
+    "priority": "high",
+    "category": "project"
+  },
+  "Linux": {
+    "recommendation": "Learn basic shell commands: file navigation, permissions, processes, pipes. Practice on WSL or a VM.",
+    "priority": "medium",
+    "category": "practice"
+  },
+  "Agile": {
+    "recommendation": "Read the Agile Manifesto and one Scrum guide. Practice writing user stories and estimating.",
+    "priority": "low",
+    "category": "reading"
+  },
+  "Scrum": {
+    "recommendation": "Complete a free Scrum Fundamentals course. Learn the roles, ceremonies, and artifacts.",
+    "priority": "low",
+    "category": "course"
+  },
+  "Communication": {
+    "recommendation": "Practice explaining your projects in 2 minutes. Record yourself and review.",
+    "priority": "medium",
+    "category": "practice"
+  },
+  "Leadership": {
+    "recommendation": "Lead a small team project (college, club, or hackathon). Reflect on what worked.",
+    "priority": "low",
+    "category": "practice"
+  },
+  "Problem Solving": {
+    "recommendation": "Solve 2 LeetCode easy problems per day for 2 weeks. Track patterns you notice.",
+    "priority": "high",
+    "category": "practice"
+  }
+}
