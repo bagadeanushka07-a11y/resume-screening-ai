@@ -226,3 +226,53 @@ def get_recommendations_for_match(match_id: int) -> List[Dict]:
         return cur.fetchall()
     finally:
         conn.close()
+
+
+# --- Dashboard stats ---------------------------------------------------------
+
+def get_user_stats(user_id: int) -> Dict:
+    """
+    Return aggregate stats for the dashboard:
+        {
+            "total_resumes": int,
+            "total_jobs_analyzed": int,     # distinct jobs matched
+            "total_matches": int,
+            "avg_match_score": float,       # in percent (0-100)
+        }
+    """
+    conn = get_connection()
+    try:
+        cur = conn.cursor(dictionary=True)
+
+        # Total resumes
+        cur.execute(
+            "SELECT COUNT(*) AS n FROM resumes WHERE user_id = %s",
+            (user_id,),
+        )
+        row = cur.fetchone() or {}
+        total_resumes = row.get("n", 0) or 0
+
+        # Total matches + distinct jobs + avg score
+        cur.execute(
+            """SELECT COUNT(*) AS n,
+                      COUNT(DISTINCT m.job_id) AS distinct_jobs,
+                      AVG(m.overall_score) AS avg_score
+               FROM match_results m
+               JOIN resumes r ON r.id = m.resume_id
+               WHERE r.user_id = %s""",
+            (user_id,),
+        )
+        row = cur.fetchone() or {}
+        total_matches = row.get("n", 0) or 0
+        distinct_jobs = row.get("distinct_jobs", 0) or 0
+        avg_raw = row.get("avg_score")
+        avg_pct = round(float(avg_raw) * 100, 1) if avg_raw is not None else 0.0
+
+        return {
+            "total_resumes": int(total_resumes),
+            "total_jobs_analyzed": int(distinct_jobs),
+            "total_matches": int(total_matches),
+            "avg_match_score": avg_pct,
+        }
+    finally:
+        conn.close()
