@@ -50,3 +50,6 @@ tests/fixtures/~$*.docx
 ~$*
 # Exception: curated skills list (hand-crafted, small, part of the project)
 !data/external/curated_skills.json
+
+# Exception: model metadata is useful to commit
+!models/metadata.json
